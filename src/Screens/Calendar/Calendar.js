@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export function Home() {
+export function Calendar() {
   return (
     <View>
-      <Text>Home</Text>
+      <Text>Aca vamos a poner el calendario</Text>
     </View>
   );
 }

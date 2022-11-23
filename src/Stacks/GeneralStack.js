@@ -3,7 +3,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 //componentes
-import Tabs from "../Tabs";
+import Tabs from "../Tabs.js";
 
 const GeneralStack = () => {
   const Stack = createNativeStackNavigator();
@@ -15,6 +15,7 @@ const GeneralStack = () => {
           tabBarIcon: ({ color }) => screenOptions(route, color),
           inactiveTintColor: "black",
           activeTintColor: "blue",
+          headerShown: false,
         })}
       >
         <Stack.Screen name="Tabs" component={Tabs} />

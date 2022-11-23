@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export function Home() {
+export function Bills() {
   return (
     <View>
-      <Text>Home</Text>
+      <Text>CUENTASSS</Text>
     </View>
   );
 }

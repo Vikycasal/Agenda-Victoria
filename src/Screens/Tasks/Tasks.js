@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export function Home() {
+export function Tasks() {
   return (
     <View>
-      <Text>Home</Text>
+      <Text>Tareas del hogar, pendientes, trabajo</Text>
     </View>
   );
 }
