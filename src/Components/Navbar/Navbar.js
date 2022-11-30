@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 export function Navbar() {
   return (
     <View style={globalStyles.navbar}>
-      <Text style={globalStyles.navbarText}>🌟 Agenda Personal</Text>
+      <Text style={globalStyles.navbarText}>Agenda Personal</Text>
       <MaterialCommunityIcons
         name="logout"
         size={22}

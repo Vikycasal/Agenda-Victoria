@@ -16,7 +16,7 @@ export function Home() {
           <MaterialCommunityIcons
             name="calendar-month-outline"
             size={24}
-            color="#037ef3"
+            color="pink"
             style={globalStyles.taskHouseIcon}
           />
           Próximos
@@ -29,7 +29,7 @@ export function Home() {
           <MaterialCommunityIcons
             name="calendar-check-outline"
             size={24}
-            color="#037ef3"
+            color="pink"
             style={globalStyles.taskHouseIcon}
           />
           Tareas pendientes
@@ -42,7 +42,7 @@ export function Home() {
           <MaterialCommunityIcons
             name="cash-plus"
             size={28}
-            color="#037ef3"
+            color="pink"
             style={globalStyles.cashIcon}
           />
           Cuentas a vencer
@@ -56,7 +56,7 @@ export function Home() {
           <MaterialCommunityIcons
             name="note-multiple-outline"
             size={24}
-            color="#037ef3"
+            color="pink"
             style={globalStyles.taskHouseIcon}
           />
           Notas
