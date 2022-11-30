@@ -9,9 +9,9 @@ const CalendarStackScreen = () => {
 
   return (
     <CalendarStack.Navigator
-    // screenOptions={() => ({
-    //   headerShown: false,
-    // })}
+      screenOptions={() => ({
+        headerShown: false,
+      })}
     >
       <CalendarStack.Screen name="calendar" component={Calendar} />
     </CalendarStack.Navigator>

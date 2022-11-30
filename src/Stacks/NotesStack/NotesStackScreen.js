@@ -9,9 +9,9 @@ const NotesStackScreen = () => {
 
   return (
     <NotesStack.Navigator
-    // screenOptions={() => ({
-    //   headerShown: false,
-    // })}
+      screenOptions={() => ({
+        headerShown: false,
+      })}
     >
       <NotesStack.Screen name="notes" component={Notes} />
     </NotesStack.Navigator>

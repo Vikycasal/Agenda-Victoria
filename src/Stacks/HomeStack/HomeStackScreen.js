@@ -9,9 +9,9 @@ const HomeStackScreen = () => {
 
   return (
     <HomeStack.Navigator
-    // screenOptions={() => ({
-    //   headerShown: false,
-    // })}
+      screenOptions={() => ({
+        headerShown: false,
+      })}
     >
       <HomeStack.Screen name="home" component={Home} />
     </HomeStack.Navigator>
