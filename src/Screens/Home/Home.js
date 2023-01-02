@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { globalStyles } from "../styles";
 //components
 import { Navbar } from "../../Components/Navbar/Navbar";
 //librerias
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { getTasks } from "../../store/actions/tasks.actions";
 
 export function Home() {
+  //constantes
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTasks());
+  }, []);
+
   return (
     <ScrollView>
       <View>
@@ -35,6 +45,15 @@ export function Home() {
           Tareas pendientes
         </Text>
         <View style={globalStyles.boxTasks}>
+          {tasks.length ? (
+            tasks.map((data, index) => (
+              <View key={index}>
+                <Text>{data.title}</Text>
+              </View>
+            ))
+          ) : (
+            <Text>No hay datos</Text>
+          )}
           <Text>Lugar</Text>
           <Text>Concepto</Text>
         </View>

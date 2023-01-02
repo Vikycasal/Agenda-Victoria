@@ -1,4 +1,5 @@
-import React from "react";
+//crear nueva tarea
+import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { globalStyles } from "../styles";
 //librerias
@@ -7,6 +8,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Navbar } from "../../Components/Navbar/Navbar";
 
 export function Tasks_1() {
+  //para crear una tarea lo primero que tengo que hacer es hacer 1 constante con los campos a llenar
+  const [input, setInput] = useState({
+    title: "",
+    description: "",
+    date: "",
+  });
+
   return (
     <View>
       <Navbar />
