@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text } from "react-native";
 import { globalStyles } from "../styles";
 //librerias
@@ -7,10 +7,20 @@ import { useNavigation } from "@react-navigation/native";
 import { DataTable } from "react-native-paper";
 //componentes
 import { Navbar } from "../../Components/Navbar/Navbar";
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { getTasks } from "../../store/actions/tasks.actions";
 
 export function Tasks() {
   //constantes
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  //tareas
+  const tasks = useSelector((state) => state.tasks.tasks);
+
+  useEffect(() => {
+    dispatch(getTasks());
+  }, []);
 
   return (
     <View>
@@ -40,13 +50,13 @@ export function Tasks() {
             <DataTable.Title>Eliminar</DataTable.Title>
           </DataTable.Header>
           <DataTable.Row>
-            <DataTable.Cell>Aqui van las tareas</DataTable.Cell>
-          </DataTable.Row>
-          <DataTable.Row>
-            <DataTable.Cell>Aqui van las tareas</DataTable.Cell>
-          </DataTable.Row>
-          <DataTable.Row>
-            <DataTable.Cell>Aqui van las tareas</DataTable.Cell>
+            {tasks.length ? (
+              tasks.map((data, index) => (
+                <DataTable.Cell key={index}>{data.title}</DataTable.Cell>
+              ))
+            ) : (
+              <DataTable.Cell>No existe ninguna tarea</DataTable.Cell>
+            )}
           </DataTable.Row>
         </DataTable>
       </View>

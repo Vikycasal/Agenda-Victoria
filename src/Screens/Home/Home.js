@@ -5,16 +5,30 @@ import { globalStyles } from "../styles";
 import { Navbar } from "../../Components/Navbar/Navbar";
 //librerias
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+//redux
 import { useDispatch, useSelector } from "react-redux";
 import { getTasks } from "../../store/actions/tasks.actions";
+import { getBills } from "../../store/actions/bills.actions";
+import { getCalendar } from "../../store/actions/calendar.actions";
+import { getNotes } from "../../store/actions/notes.actions";
 
 export function Home() {
   //constantes
-  const tasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
+  //tareas
+  const tasks = useSelector((state) => state.tasks.tasks);
+  //cuentas
+  const bills = useSelector((state) => state.bills.bills);
+  //calendario
+  const calendar = useSelector((state) => state.calendar.calendar);
+  //notas
+  const notes = useSelector((state) => state.notes.notes);
 
   useEffect(() => {
     dispatch(getTasks());
+    dispatch(getBills());
+    dispatch(getNotes());
+    dispatch(getCalendar());
   }, []);
 
   return (
@@ -32,8 +46,15 @@ export function Home() {
           Próximos
         </Text>
         <View style={globalStyles.boxTasks}>
-          <Text>Fecha</Text>
-          <Text>Concepto</Text>
+          {calendar.length ? (
+            calendar.map((data, index) => (
+              <View key={index}>
+                <Text>{data.title}</Text>
+              </View>
+            ))
+          ) : (
+            <Text>No tienes nada el dia de hoy!!</Text>
+          )}
         </View>
         <Text style={globalStyles.subtitleText}>
           <MaterialCommunityIcons
@@ -52,10 +73,8 @@ export function Home() {
               </View>
             ))
           ) : (
-            <Text>No hay datos</Text>
+            <Text>No se cargaron tareas aun! 😛</Text>
           )}
-          <Text>Lugar</Text>
-          <Text>Concepto</Text>
         </View>
         <Text style={globalStyles.subtitleText}>
           <MaterialCommunityIcons
@@ -67,9 +86,15 @@ export function Home() {
           Cuentas a vencer
         </Text>
         <View style={globalStyles.boxTasks}>
-          <Text>Fecha</Text>
-          <Text>Concepto</Text>
-          <Text>Monto</Text>
+          {bills.length ? (
+            bills.map((data, index) => (
+              <View key={index}>
+                <Text>{data.title}</Text>
+              </View>
+            ))
+          ) : (
+            <Text>No tenes ninguna cuenta a vencer 😛</Text>
+          )}
         </View>
         <Text style={globalStyles.subtitleText}>
           <MaterialCommunityIcons
@@ -81,7 +106,11 @@ export function Home() {
           Notas
         </Text>
         <View style={globalStyles.boxTasks}>
-          <Text>Titulo nota</Text>
+          {notes.length ? (
+            notes.map((data, index) => <View key={index}>{data.title}</View>)
+          ) : (
+            <Text>No tenes notas todavia!</Text>
+          )}
         </View>
       </View>
     </ScrollView>

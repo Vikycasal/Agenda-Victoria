@@ -1,5 +1,5 @@
 import { API_URL } from "../../constant/api.constant";
-import axios from "axios";
+//reducer
 import { setTasks } from "../reducers/tasks.reducer";
 
 //traigo todos los datos de las tareas
