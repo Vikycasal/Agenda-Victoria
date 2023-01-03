@@ -41,13 +41,13 @@ export function Tasks_1() {
   //constante para enviar a la api la creacion de la tarea
   const createTasks = async () => {
     try {
-      const res = await axios.post(`${API_URL}/tasks`);
+      const res = await axios.post(`${API_URL}/tasks`, input);
       console.log(res.data);
       if (res.status === 200) {
         dispatch(getTasks());
       }
     } catch (error) {
-      console.log(error, "error de la creacion de la tarea");
+      console.log(error.response.data, "error de la creacion de la tarea");
     }
   };
 
@@ -81,7 +81,9 @@ export function Tasks_1() {
       <Text style={globalStyles.textTaskForm}>Agregar descripción</Text>
       <TextInput
         placeholder="Agrega aqui tu descripción"
+        value={input.description}
         style={globalStyles.textInputTaskForm}
+        onChangeText={(value) => handleInput("description", value)}
       />
       <Text style={globalStyles.textTaskForm}>Agregar fecha</Text>
       <TextInput
