@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { globalStyles } from "../styles";
 //components
@@ -7,10 +7,20 @@ import { Navbar } from "../../Components/Navbar/Navbar";
 import { DataTable, TextInput } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+//redux
+import { getBills } from "../../store/actions/bills.actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export function Bills() {
   //constantes
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  //cuentas
+  const bills = useSelector((state) => state.bills.bills);
+
+  useEffect(() => {
+    dispatch(getBills());
+  }, []);
 
   return (
     <ScrollView>
@@ -33,19 +43,15 @@ export function Bills() {
               <DataTable.Title>Vencimiento</DataTable.Title>
             </DataTable.Header>
             <DataTable.Header>
-              <DataTable.Title>Personal</DataTable.Title>
-              <DataTable.Title>$1500</DataTable.Title>
-              <DataTable.Title>10/12</DataTable.Title>
-            </DataTable.Header>
-            <DataTable.Header>
-              <DataTable.Title>Personal</DataTable.Title>
-              <DataTable.Title>$1500</DataTable.Title>
-              <DataTable.Title>10/12</DataTable.Title>
-            </DataTable.Header>
-            <DataTable.Header>
-              <DataTable.Title>Personal</DataTable.Title>
-              <DataTable.Title>$1500</DataTable.Title>
-              <DataTable.Title>10/12</DataTable.Title>
+              {bills.length ? (
+                bills.map((data, index) => (
+                  <View key={index}>
+                    <Text>{data.title}</Text>
+                  </View>
+                ))
+              ) : (
+                <Text>No hay ninguna cuenta agregada</Text>
+              )}
             </DataTable.Header>
             <DataTable.Header>
               <DataTable.Title>TOTAL</DataTable.Title>

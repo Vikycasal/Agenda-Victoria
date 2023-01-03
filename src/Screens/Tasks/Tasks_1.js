@@ -12,13 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 //api
 import { API_URL } from "../../constant/api.constant";
 import { getTasks } from "../../store/actions/tasks.actions";
-import { setTasks } from "../../store/reducers/tasks.reducer";
 
 export function Tasks_1() {
   //constantes
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const tasks = useSelector((state) => state.tasks.tasks);
+
   //para crear una tarea lo primero que tengo que hacer es hacer 1 constante con los campos a llenar
   const [input, setInput] = useState({
     title: "",
@@ -38,9 +38,17 @@ export function Tasks_1() {
     }
   }, [tasks]);
 
+  const handleInput = (type, value) => {
+    setInput({
+      ...input,
+      [type]: value,
+    });
+  };
+
   //constante para enviar a la api la creacion de la tarea
   const createTasks = async () => {
     try {
+      //siempre hay que pasarle los datos que estoy cargando
       const res = await axios.post(`${API_URL}/tasks`, input);
       console.log(res.data);
       if (res.status === 200) {
@@ -49,13 +57,6 @@ export function Tasks_1() {
     } catch (error) {
       console.log(error.response.data, "error de la creacion de la tarea");
     }
-  };
-
-  const handleInput = (type, value) => {
-    setInput({
-      ...input,
-      [type]: value,
-    });
   };
 
   return (
@@ -87,8 +88,10 @@ export function Tasks_1() {
       />
       <Text style={globalStyles.textTaskForm}>Agregar fecha</Text>
       <TextInput
+        value={input.date}
         placeholder="Agrega aqui la fecha"
         style={globalStyles.textInputTaskForm}
+        onChangeText={(value) => handleInput("date", value)}
       />
       <TouchableOpacity style={globalStyles.buttonTask} onPress={createTasks}>
         <Text style={globalStyles.buttonText}>Confirmar tarea</Text>
