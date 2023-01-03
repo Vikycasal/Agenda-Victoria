@@ -52,7 +52,21 @@ export function Tasks() {
           <DataTable.Row>
             {tasks.length ? (
               tasks.map((data, index) => (
-                <DataTable.Cell key={index}>{data.title}</DataTable.Cell>
+                <DataTable.Cell key={index}>
+                  {data.title}
+                  <MaterialCommunityIcons
+                    name="note-edit-outline"
+                    size={24}
+                    color="pink"
+                    style={globalStyles.taskHouseIcon}
+                  />
+                  <MaterialCommunityIcons
+                    name="trash-can-outline"
+                    size={24}
+                    color="pink"
+                    style={globalStyles.taskHouseIcon}
+                  />
+                </DataTable.Cell>
               ))
             ) : (
               <DataTable.Cell>No existe ninguna tarea</DataTable.Cell>
