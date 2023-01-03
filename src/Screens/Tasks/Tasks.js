@@ -98,13 +98,27 @@ export function Tasks() {
             <DataTable.Title>Eliminar</DataTable.Title>
           </DataTable.Header>
           <DataTable.Row>
-            <DataTable.Cell>Aqui van las tareas</DataTable.Cell>
-          </DataTable.Row>
-          <DataTable.Row>
-            <DataTable.Cell>Aqui van las tareas</DataTable.Cell>
-          </DataTable.Row>
-          <DataTable.Row>
-            <DataTable.Cell>Aqui van las tareas</DataTable.Cell>
+            {tasks.length ? (
+              tasks.map((data, index) => (
+                <DataTable.Cell key={index}>
+                  {data.title}
+                  <MaterialCommunityIcons
+                    name="note-edit-outline"
+                    size={24}
+                    color="pink"
+                    style={globalStyles.taskHouseIcon}
+                  />
+                  <MaterialCommunityIcons
+                    name="trash-can-outline"
+                    size={24}
+                    color="pink"
+                    style={globalStyles.taskHouseIcon}
+                  />
+                </DataTable.Cell>
+              ))
+            ) : (
+              <DataTable.Cell>No existe ninguna tarea</DataTable.Cell>
+            )}
           </DataTable.Row>
         </DataTable>
       </View>

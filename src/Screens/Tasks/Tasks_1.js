@@ -30,6 +30,7 @@ export function Tasks_1() {
     if (tasks) {
       const { title, description, date } = tasks;
       setInput({
+        ...input,
         title,
         description,
         date,
@@ -55,7 +56,6 @@ export function Tasks_1() {
       ...input,
       [type]: value,
     });
-    dispatch(setTasks());
   };
 
   return (
@@ -88,7 +88,7 @@ export function Tasks_1() {
         placeholder="Agrega aqui la fecha"
         style={globalStyles.textInputTaskForm}
       />
-      <TouchableOpacity style={globalStyles.buttonTask}>
+      <TouchableOpacity style={globalStyles.buttonTask} onPress={createTasks}>
         <Text style={globalStyles.buttonText}>Confirmar tarea</Text>
       </TouchableOpacity>
       <TouchableOpacity style={globalStyles.buttonTask}>
