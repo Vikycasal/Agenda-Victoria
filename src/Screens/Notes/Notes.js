@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { globalStyles } from "../styles";
 //components
@@ -6,10 +6,20 @@ import { Navbar } from "../../Components/Navbar/Navbar";
 //librerias
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { getNotes } from "../../store/actions/notes.actions";
 
 export function Notes() {
   //constangtes
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  //notas
+  const notes = useSelector((state) => state.notes.notes);
+
+  useEffect(() => {
+    dispatch(getNotes());
+  }, []);
 
   return (
     <View>
@@ -25,12 +35,16 @@ export function Notes() {
           onPress={() => navigation.navigate("notes_1")}
         />
       </Text>
-      <Text style={globalStyles.subtitleText}>
-        Este es el titulo de una nota
-      </Text>
-      <View>
-        <Text>Aqui va la nota</Text>
-      </View>
+      {notes.length ? (
+        notes.map((data, index) => (
+          <View key={index}>
+            <Text>{data.title}</Text>
+            <Text>{data.description}</Text>
+          </View>
+        ))
+      ) : (
+        <Text>No existe ninguna nota</Text>
+      )}
     </View>
   );
 }
